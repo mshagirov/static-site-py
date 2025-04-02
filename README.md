@@ -45,3 +45,7 @@ browser --> fileserver
 - `**Bold text**`
 - `_Italic text_`
 - \``Code text`\`
+- Links, in the `[anchor text](url)` format
+- Images, in `![alt text](url)` format
+
+Everything is considered as a *block level*: e.g., headings, paragraphs, and bullet lists.
