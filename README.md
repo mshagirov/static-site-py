@@ -18,14 +18,11 @@ Markdown files`"]
     public["`**public/**
 The output directory for
 python3 src/main.py
-removes all files and generates
-the new ones. Contains the
-final HTML and CSS`"]
+removes all files and generates the new ones. Contains the final HTML and CSS`"]
     
     fileserver(["`**File Server**
 python3 -m http.server 8888
-Serves the public files
-for browser access`"])
+Serves the public files for to the browser`"])
     browser(["`**browser**
 Renders the HTML and CSS`"])
 
