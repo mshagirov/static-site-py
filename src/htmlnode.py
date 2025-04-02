@@ -9,13 +9,13 @@ class HTMLNode():
         self.children = children
         self.props = props
 
-    def to_html(self):
+    def to_html(self) -> str:
         '''
         Child classes should override this method
         '''
         raise(Exception("NotImplementedError"))
 
-    def props_to_html(self):
+    def props_to_html(self) -> str:
         '''
         Returns a string representation of the HTML attributes of the node
         '''

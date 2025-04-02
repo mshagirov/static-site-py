@@ -59,5 +59,19 @@ HTMLNode class represents a node in an HTML document tree, such as, `<p>` or `<a
 
 ### LeafNode
 
+LeafNode is a type of HTMLNode. It is a leaf of HTML nodes with a single HTML tag with *no children*. E.g., a simple paragraph (tag `<p>` without any other nested tags):
+
+```
+<p>This is a paragraph.</p>
+```
+
+E.g., this paragraph is not a LeafNode:
+
+```
+<p> A paragraph with a <b>bold text</b>.</p>
+```
+
+where `<p>` is not a LeafNode. Here, the LeafNode is `<b>` tag.
+
 
 
