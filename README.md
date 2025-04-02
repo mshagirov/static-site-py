@@ -1,5 +1,5 @@
 # static-site-py
-## Architecture of the Project
+## Architecture of the Static Site Project
 
 ```mermaid
 %%{init: {"flowchart": {"htmlLabels": false}} }%%
@@ -39,3 +39,9 @@ browser --> fileserver
 
 ## TextNode
 
+ Represents all the different types of *inline* text. The `TextNode` is an intermediate representation of the text in the python code. Inline text is any text which is part of a larger block of text. I.e.,
+
+- Normal text
+- `**Bold text**`
+- `_Italic text_`
+- \``Code text`\`
