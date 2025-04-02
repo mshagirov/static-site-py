@@ -37,9 +37,12 @@ fileserver --> browser
 browser --> fileserver
 ```
 
-## TextNode
+## Nodes
+> Intermediate representations of the markdown text elements inside our code during markdown to html conversion. 
 
- Represents all the different types of *inline* text. The `TextNode` is an intermediate representation of the text in the python code. Inline text is any text which is part of a larger block of text. I.e.,
+### TextNode
+
+Represents all the different types of *inline* text. The `TextNode` is an intermediate representation of the text in the python code. Inline text is any text which is part of a larger block of text. I.e.,
 
 - Normal text
 - `**Bold text**`
@@ -49,3 +52,12 @@ browser --> fileserver
 - Images, in `![alt text](url)` format
 
 Everything else is considered as a *block level*: e.g., headings, paragraphs, and bullet lists.
+
+### HTMLNode
+
+HTMLNode class represents a node in an HTML document tree, such as, `<p>` or `<a>` tags and their contents and can be either block-level of inline elements of the text. HTMLNode only outputs HTML.
+
+### LeafNode
+
+
+
