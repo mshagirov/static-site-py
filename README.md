@@ -48,4 +48,4 @@ browser --> fileserver
 - Links, in the `[anchor text](url)` format
 - Images, in `![alt text](url)` format
 
-Everything is considered as a *block level*: e.g., headings, paragraphs, and bullet lists.
+Everything else is considered as a *block level*: e.g., headings, paragraphs, and bullet lists.
