@@ -5,14 +5,10 @@
 %%{init: {"flowchart": {"htmlLabels": false}} }%%
 flowchart LR
     static["`**static/**
-static assets, e.g.:
-images, CSS`"]
+static assets, e.g.: images, CSS`"]
     
     src["`**src/**
-Python code: the static
-site generator. Creates
-all the stuff in the
-public directory`"]
+Python code: the static site generator. Creates all the stuff in the public directory`"]
 
     content["`**content/**
 Markdown files`"]
