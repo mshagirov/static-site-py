@@ -44,4 +44,4 @@ browser --> fileserver
 - Normal text
 - `**Bold text**`
 - `_Italic text_`
-- \``Code text`\`
+- \```Code text``\`
