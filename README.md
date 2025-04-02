@@ -14,8 +14,8 @@ site generator. Creates
 all the stuff in the
 public directory`"]
 
-    content["`**content/**`
-Markdown files"]
+    content["`**content/**
+Markdown files`"]
 
     templatehtml[\"`**template.html**`"\]
     
