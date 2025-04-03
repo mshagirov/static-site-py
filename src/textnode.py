@@ -17,6 +17,9 @@ class TextNode:
         self.url = url
 
     def __eq__(self, other):
+        '''
+        True if attributes of the other object are equal self
+        '''
         return (self.text == other.text) and (self.text_type == other.text_type) and (self.url == other.url)
 
     def __repr__(self):

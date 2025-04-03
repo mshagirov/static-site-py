@@ -73,5 +73,7 @@ E.g., this paragraph is not a LeafNode:
 
 where `<p>` is not a LeafNode. Here, the LeafNode is `<b>` tag.
 
+### ParentNode
 
+ParentNode class handles the nesting of HTMLNode objects. ParentNode is any non-leaf node, and parent node always has a child or children nodes.
 

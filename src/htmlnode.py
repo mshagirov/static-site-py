@@ -24,4 +24,4 @@ class HTMLNode():
         return " " + " ".join([f'{k}="{self.props[k]}"' for k in self.props])
 
     def __repr__(self) -> str:
-       return f"HTMLNode({self.tag},\n{self.value},\n{self.children},\n{self.props})" 
+       return f"{self.__class__.__name__}({self.tag}, {self.value}, {self.children}, {self.props})" 
