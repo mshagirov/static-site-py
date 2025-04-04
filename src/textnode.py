@@ -1,12 +1,12 @@
 from enum import Enum
 
 class TextType(Enum):
-    NORMAL = 'normal'
-    BOLD = 'bold'
-    ITALIC = 'italic'
-    CODE = 'code'
-    LINK = 'link'
-    IMAGE = 'image'
+    TEXT = 'text' # TextType.TEXT
+    BOLD = 'bold'   # TextType.BOLD
+    ITALIC = 'italic' # TextType.ITALIC
+    CODE = 'code'   # TextType.CODE
+    LINK = 'link'   # TextType.LINK
+    IMAGE = 'image' # TextType.IMAGE
 
 class TextNode:
     def __init__(self, text, text_type, url=None):
@@ -23,6 +23,6 @@ class TextNode:
         return (self.text == other.text) and (self.text_type == other.text_type) and (self.url == other.url)
 
     def __repr__(self):
-        return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
+        return f'TextNode("{self.text}", {self.text_type}{", " + self.url if self.url != None else ""})'
 
 

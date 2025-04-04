@@ -15,9 +15,10 @@ class TestTextNode(unittest.TestCase):
         self.assertNotEqual(node, node2)
 
     def test_type(self):
-        node = TextNode("This is a text node", TextType.NORMAL, url=None)
+        node = TextNode("This is a text node", TextType.TEXT, url=None)
         for t in TextType:
-            if t == TextType.NORMAL: continue
+            if t == TextType.TEXT:
+                continue
             node2 = TextNode("This is a text node", t, url=None)
             self.assertNotEqual(node, node2)
 
