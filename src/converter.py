@@ -1,8 +1,9 @@
 """
-Module for converting TextNode objects to HTMLNode objects
+Module for converting raw text and TextNode to HTMLNode conversion function
 """
 from textnode import TextType, TextNode
 from leafnode import LeafNode
+import re
 
 def text_node_to_html_node(text_node:TextNode):
     '''
@@ -26,7 +27,7 @@ def text_node_to_html_node(text_node:TextNode):
         case _:
             raise(Exception("text_node should be one of TextType types"))
 
-def split_nodes_delimeter(old_nodes, delimeter, text_type):
+def split_nodes_delimeter(old_nodes:list, delimeter:str, text_type:TextType):
     '''
     Splits input "old_nodes" using "delimeter" and a "text_type" 
 
@@ -52,8 +53,9 @@ def split_nodes_delimeter(old_nodes, delimeter, text_type):
                 new_nodes.append(TextNode(part, text_type))
     return new_nodes
 
+def extract_markdown_images(text:str):
+    return re.findall(r"!\[(.*?)\]\((.*?)\)",text)
 
-
-
-
+def extract_markdown_links(text:str):
+    return re.findall(r"(?<!!)\[(.*?)\]\((.*?)\)",text)
 
