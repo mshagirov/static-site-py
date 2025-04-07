@@ -30,4 +30,5 @@ class TestExtractFromMarkdown(unittest.TestCase):
         )
         self.assertEqual([], link_matches)
 
-
+if __name__ == "__main__":
+    unittest.main()

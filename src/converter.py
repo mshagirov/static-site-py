@@ -47,9 +47,9 @@ def split_nodes_delimeter(old_nodes:list, delimeter:str, text_type:TextType):
     new_nodes = []
     for node in old_nodes:
         for k,part in enumerate(node.text.split(delimeter)):
-            if k%2==0:
+            if (k%2==0) and part:
                 new_nodes.append(TextNode(part, node.text_type))
-            else:
+            elif part:
                 new_nodes.append(TextNode(part, text_type))
     return new_nodes
 
@@ -58,4 +58,66 @@ def extract_markdown_images(text:str):
 
 def extract_markdown_links(text:str):
     return re.findall(r"(?<!!)\[(.*?)\]\((.*?)\)",text)
+
+def split_nodes_link(old_nodes:list):
+    def split_at_link(text:str,link:tuple):
+        return text.split(f"[{link[0]}]({link[1]})", 1)
+    new_nodes = []
+    for node in old_nodes:
+        links = extract_markdown_links(node.text)
+        if not links:
+            new_nodes.append(node)
+            continue
+
+        text = node.text
+        for link in links:
+            before_after = split_at_link(text, link)
+            if before_after[0]:
+                new_nodes.append( TextNode(before_after[0], node.text_type, node.url))
+            new_nodes.append( TextNode(link[0], TextType.LINK, link[1]) )
+            text = before_after[1]
+        if text:
+            new_nodes.append( TextNode( text, node.text_type, node.url))
+
+    return new_nodes
+
+
+def split_nodes_image(old_nodes:list):
+    def split_at_image(text:str,image:tuple):
+        return text.split(f"![{image[0]}]({image[1]})", 1)
+    new_nodes = []
+    for node in old_nodes:
+        images = extract_markdown_images(node.text)
+        if not images:
+            new_nodes.append(node)
+            continue
+
+        text = node.text
+        for image in images:
+            before_after = split_at_image(text, image)
+            if before_after[0]:
+                new_nodes.append( TextNode(before_after[0], node.text_type, node.url))
+            new_nodes.append( TextNode(image[0], TextType.IMAGE, image[1]) )
+            text = before_after[1]
+        if text:
+            new_nodes.append( TextNode( text, node.text_type, node.url))
+
+    return new_nodes
+
+
+def text_to_textnodes(text:str):
+    # node = TextNode(text, TextType.TEXT)
+    types_delim = {TextType.BOLD : "**", TextType.ITALIC:"_", TextType.CODE:"`"}
+    nodes = [ TextNode(text, TextType.TEXT)]
+
+    for t in types_delim:
+        nodes  = split_nodes_delimeter(nodes, types_delim[t], t)
+
+    nodes = split_nodes_link(split_nodes_image(nodes))
+    return nodes
+
+def markdown_to_blocks(markdown:str):
+    blocks = markdown.split("\n\n")
+    blocks = list(filter( len, map(lambda block: block.strip(), blocks)))
+    return blocks
 
