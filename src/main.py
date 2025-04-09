@@ -1,7 +1,8 @@
+# from typing import Text
 from cp_static_to_public import cp_static_to_public 
 
 def main():
-    cp_static_to_public()
+    cp_static_to_public(logging=True)
 
 
 
