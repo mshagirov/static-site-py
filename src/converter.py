@@ -1,5 +1,5 @@
 """
-Module for converting raw text and TextNode to HTMLNode conversion function
+Raw text, TextNode, and HTMLNode conversion functions
 """
 from textnode import TextType, TextNode
 from leafnode import LeafNode
@@ -46,6 +46,10 @@ def split_nodes_delimeter(old_nodes:list, delimeter:str, text_type:TextType):
     '''
     new_nodes = []
     for node in old_nodes:
+        if (node.text_type == TextType.LINK) or (node.text_type == TextType.IMAGE):
+            new_nodes.append(node)
+            continue
+
         for k,part in enumerate(node.text.split(delimeter)):
             if (k%2==0) and part:
                 new_nodes.append(TextNode(part, node.text_type))
@@ -110,10 +114,11 @@ def text_to_textnodes(text:str):
     types_delim = {TextType.BOLD : "**", TextType.ITALIC:"_", TextType.CODE:"`"}
     nodes = [ TextNode(text, TextType.TEXT)]
 
+    nodes = split_nodes_link(split_nodes_image(nodes))
+
     for t in types_delim:
         nodes  = split_nodes_delimeter(nodes, types_delim[t], t)
 
-    nodes = split_nodes_link(split_nodes_image(nodes))
     return nodes
 
 def markdown_to_blocks(markdown:str):

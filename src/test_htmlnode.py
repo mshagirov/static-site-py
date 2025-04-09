@@ -9,7 +9,7 @@ class TestHTMLNode(unittest.TestCase):
         self.assertTrue((not node_no_value.value) and node_no_value.children)
 
     def test_nochildren(self):
-        node_no_child = HTMLNode(value=f"This is text")
+        node_no_child = HTMLNode(value="This is text")
         # An HTMLNode without children will be assumed to have a value
         self.assertTrue((not node_no_child.children) and node_no_child.value)
 

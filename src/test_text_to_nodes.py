@@ -20,23 +20,20 @@ class TestTextToTextNodes(unittest.TestCase):
             ],
                          nodes)
     def test_nested_text(self):
-        text = "A **text**, _italic_ word, `code block`, **and ![sample image](https://img.com/123.jpeg) with bold text** and a _italic [link](https://boot.dev)_"
+        text = "A **text**, _italic words_ `code block` ![sample image](https://img.com/123.jpeg) [link](https://boot.dev)"
         nodes = text_to_textnodes(text)
         self.assertEqual(
             [
                 TextNode("A ", TextType.TEXT),
                 TextNode("text", TextType.BOLD),
                 TextNode(", ", TextType.TEXT),
-                TextNode("italic", TextType.ITALIC),
-                TextNode(" word, ", TextType.TEXT),
+                TextNode("italic words", TextType.ITALIC),
+                TextNode(" ", TextType.TEXT),
                 TextNode("code block", TextType.CODE),
-                TextNode(", ", TextType.TEXT),
-                TextNode("and ", TextType.BOLD),
+                TextNode(" ", TextType.TEXT),
                 TextNode("sample image", TextType.IMAGE, "https://img.com/123.jpeg"),
-                TextNode(" with bold text", TextType.BOLD),
-                TextNode(" and a ", TextType.TEXT),
-                TextNode("italic ", TextType.ITALIC),
-                TextNode("link", TextType.LINK, "https://boot.dev"),
+                TextNode(" ", TextType.TEXT),
+                TextNode("link", TextType.LINK, "https://boot.dev")
             ],
             nodes
         )

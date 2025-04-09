@@ -4,6 +4,14 @@ HTMLNode module
 
 class HTMLNode():
     def __init__(self, tag=None, value=None, children=None, props=None) -> None:
+        '''
+        Args:
+        - tag:str : HTML tag, e.g., "img", "a", "p" for <img>, <a> and <p>. 
+        - value:str : text content of a node.
+        - children:list : list of child HTML nodes, children may contain grandchild nodes
+        - props:dict : dictionary of node properties (strings) e.g., {"href": "https://www.example.com"}.
+        '''
+
         self.tag = tag
         self.value =value
         self.children = children

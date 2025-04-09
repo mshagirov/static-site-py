@@ -1,8 +1,8 @@
-from textnode import TextNode, TextType
+from cp_static_to_public import cp_static_to_public 
 
 def main():
-    text_node_obj =  TextNode("Alt text", TextType.IMAGE, url="./image1.png")
-    print(text_node_obj)
+    cp_static_to_public()
+
 
 
 if __name__ == '__main__':
