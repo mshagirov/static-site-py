@@ -2,7 +2,7 @@
 from pathlib import Path
 
 from cp_static_to_public import cp_static_to_public
-from genarate_all_pages import generate_all_pages
+from generate_pages_recursive import generate_pages_recursive
 
 def main():
     cp_static_to_public(logging=True)
@@ -11,7 +11,7 @@ def main():
     template_path    = Path("./template.html")
     target_html_path = Path("./public")
     
-    generate_all_pages(source_md_path, target_html_path, template_path)
+    generate_pages_recursive(source_md_path, template_path, target_html_path)
 
 if __name__ == '__main__':
     # excute when called from CLI

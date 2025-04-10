@@ -3,7 +3,7 @@ from pathlib import Path
 from generate_page import generate_page
 
 
-def generate_all_pages(source_md_path:Path, target_html_path:Path, template_path:Path):
+def generate_pages_recursive(source_md_path:Path, template_path:Path, target_html_path:Path):
     from_md_to_html_paths = []
     
     def get_md_to_html_paths(source_path:Path):
