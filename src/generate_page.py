@@ -3,7 +3,7 @@ from pathlib import Path
 from extract_title import extract_title
 from markdown_to_html_node import markdown_to_html_node
 
-def generate_page(from_path:Path, template_path:Path, dest_path:Path):
+def generate_page(from_path:Path, template_path:Path, dest_path:Path, basepath="/"):
     print(f'Generating page from {from_path} to {dest_path} using {template_path}')
 
     with open(from_path) as f:
@@ -19,6 +19,10 @@ def generate_page(from_path:Path, template_path:Path, dest_path:Path):
         "{{ Title }}", title
     ).replace(
         "{{ Content }}", content_html
+    ).replace(
+        'href="/', f'href="{basepath}'
+    ).replace(
+        'src="/', f'src="{basepath}'
     )
 
     if not dest_path.name.endswith(".html"):

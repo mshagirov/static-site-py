@@ -2,9 +2,6 @@ from pathlib import Path
 from shutil import rmtree, copy
 from os import get_terminal_size
 
-root_dir = Path('.')
-static_dir = root_dir / 'static'
-public_dir = root_dir / 'public'
 
 def get_terminal_width():
     try:
@@ -13,7 +10,7 @@ def get_terminal_width():
         width = 60
     return width
 
-def clear_public_dir(logging=False):
+def clear_public_dir(public_dir=Path('./docs'), logging=False):
     text_width = get_terminal_width()
     if logging:
         print(f'{"===[ Clearing : " + str(public_dir) + "/ ]":=<{text_width}}')
@@ -33,7 +30,7 @@ def clear_public_dir(logging=False):
     if logging:
         print(f'{"---[ Finished clearing : " + str(public_dir) + "/ ]":-<{text_width}}\n')
 
-def copy_from_path_to_path(source, destination, logging=False):
+def copy_from_path_to_path(source, destination, static_dir=Path('./static'), logging=False):
     if not source.is_dir():
         if logging:
             print(source, '-->', destination / source.name)
@@ -47,10 +44,10 @@ def copy_from_path_to_path(source, destination, logging=False):
         print(f'{str(source)}/ --> {str(destination)}/')
 
     for p in source.iterdir():
-        copy_from_path_to_path(p, destination, logging)
+        copy_from_path_to_path(p, destination, static_dir, logging)
 
-def cp_static_to_public(logging=False):
-    clear_public_dir(logging)  
+def cp_static_to_public(static_dir=Path("./static"), public_dir=Path("./docs"), logging=False):
+    clear_public_dir(public_dir=public_dir, logging=logging)  
 
     text_width = get_terminal_width()
     if logging:
@@ -60,7 +57,7 @@ def cp_static_to_public(logging=False):
         if logging:
             print(f' copying:')
 
-        copy_from_path_to_path(static_dir, public_dir, logging=logging)
+        copy_from_path_to_path(static_dir, public_dir, static_dir=static_dir, logging=logging)
     else:
         if logging: print(f' nothing to copy: "{str(static_dir)}/" is empty')
     
